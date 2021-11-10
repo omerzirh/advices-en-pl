@@ -1,15 +1,16 @@
-import React, {useState,useContext}from 'react'
-import App from './App';
+import React, { useState } from "react";
+import App from "./App";
 
-export const advContext= React.createContext();
+export const advContext = React.createContext();
 function Context() {
-    return (
-        <div>
-            <advContext.Provider value={{}}>
-                <App/>
-            </advContext.Provider>
-        </div>
-    )
+  const [advices, setAdvices] = useState([]);
+  return (
+    <div>
+      <advContext.Provider value={{ advices, setAdvices }}>
+        <App />
+      </advContext.Provider>
+    </div>
+  );
 }
 
-export default Context
+export default Context;

@@ -9,7 +9,7 @@ function Advice() {
     try {
       await fetch("https://api.adviceslip.com/advice").then((res) => {
         res.json().then((adv) => {
-          setAdvices((advices) => [...advices, [adv.slip.id, adv.slip.advice]]);
+          setAdvices((advices) => [...advices, adv.slip]);
         });
       });
     } catch (e) {
@@ -21,19 +21,19 @@ function Advice() {
       setTimeout(resolve, ms);
     });
   }
-  //api store cache for 2 seconds so fetch waits 2100ms
+  //api store cache for 2 seconds so fetch waits 2200ms
   async function RunAdvices(amount) {
     if (amount > 5 && amount < 20) {
       setAdvices([]);
       for (let i = 0; i < amount; i++) {
-        await Delay(2100);
+        await Delay(2200);
         fetchAdvices();
       }
     } else {
       alert("Amount has to be between 5 and 20");
     }
   }
-  console.log(advices)
+
   return (
     <div>
       <h1>Advice Book</h1>
@@ -42,8 +42,8 @@ function Advice() {
           <p>Please enter advice number between 5-20 </p>
 
           <input
-            min="5"
-            max="20"
+            min="6"
+            max="19"
             type="number"
             className="form-control"
             id="exampleFormControlTextarea1"
@@ -64,8 +64,8 @@ function Advice() {
           <ul className="list-group">
             {advices.length !== 0 ? (
               advices.map((adv) => (
-                <li className="list-group-item" key={adv[0]}>
-                  {adv[1]}
+                <li className="list-group-item" key={adv.id}>
+                  {adv.advice}
                 </li>
               ))
             ) : (

@@ -33,7 +33,7 @@ function Advice() {
       alert("Amount has to be between 5 and 20");
     }
   }
-  console.log("adv", advices.length, "amo", typeof 7);
+  console.log(advices)
   return (
     <div>
       <h1>Advice Book</h1>
@@ -45,7 +45,7 @@ function Advice() {
             min="5"
             max="20"
             type="number"
-            class="form-control"
+            className="form-control"
             id="exampleFormControlTextarea1"
             rows="3"
             value={amount}
@@ -61,7 +61,7 @@ function Advice() {
           </button>
         </div>
         <div className="col-md-8 adviceColumn">
-          <ul class="list-group">
+          <ul className="list-group">
             {advices.length !== 0 ? (
               advices.map((adv) => (
                 <li className="list-group-item" key={adv[0]}>

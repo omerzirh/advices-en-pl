@@ -5,17 +5,24 @@ import { Link } from "react-router-dom";
 function Advice() {
   const { advices, setAdvices } = useContext(advContext);
   const [amount, setAmount] = useState(0);
+  const arrayToCheck = [];
   const fetchAdvices = async () => {
     try {
-      await fetch("https://api.adviceslip.com/advice").then((res) => {
-        res.json().then((adv) => {
-          setAdvices((advices) => [...advices, adv.slip]);
-        });
-      });
+      const res =await fetch("https://api.adviceslip.com/advice");
+      const resJson = await res.json();
+      if (arrayToCheck.find((x) => x.id === resJson.slip.id)) {    //preventing random collision
+        alert("collision");
+        await Delay(2200);
+        fetchAdvices();
+      } else{
+        arrayToCheck.push(resJson.slip)
+        setAdvices((advices) => [...advices, resJson.slip]);
+      }
     } catch (e) {
       console.error("Error: ", e);
     }
   };
+
   function Delay(ms) {
     return new Promise((resolve) => {
       setTimeout(resolve, ms);
@@ -29,6 +36,7 @@ function Advice() {
         await Delay(2200);
         fetchAdvices();
       }
+    
     } else {
       alert("Amount has to be between 5 and 20");
     }
@@ -74,7 +82,7 @@ function Advice() {
           </ul>
           {advices.length === amount && advices.length !== 0 ? (
             <Link to="translate">
-              <button className="btn btn-success">Translate</button>
+              <button className="btn btn-success" >Translate</button>
             </Link>
           ) : null}
         </div>

@@ -41,25 +41,25 @@ function Translate() {
   async function runTranslate(amount) {
     setTranslationState(false);
     translatedArray = advices;
-    console.log(translatedArray);
     translatedArray.sort((a, b) => (a.id > b.id ? 1 : -1));
-    console.log(translatedArray);
-
     setTranslated([]);
 
     if (amount > 10) {
       alert(
         "It can take more than 1 minute to translate because of the request limit. Please be patient."
       );
-    }
-    for (let i = 0; i < amount; i++) {
-      if (amount > 10) {
-        await Delay(6001);
+      for (let i = 0; i < amount; i++) {
+          await Delay(6001);
+        translateAdvices(i);
       }
-      translateAdvices(i);
+    }else{
+      for (let i = 0; i < amount; i++) {
+        translateAdvices(i);
+      }
     }
+
+    
     alert("finished");
-    console.log(translated);
     setTranslationState(true);
   }
   return (

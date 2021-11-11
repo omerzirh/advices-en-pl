@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { advContext } from "../Context";
 import { Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./translate.css";
 function Translate() {
   const { advices } = useContext(advContext);
@@ -64,6 +65,9 @@ function Translate() {
   return (
     <div>
       <h1>Translated</h1>
+      <Link to="/">
+        <button className="btn btn-secondary advicePageButton">Advice Page</button>
+      </Link>
       <button
         className="btn btn-success"
         onClick={() => runTranslate(advices.length)}

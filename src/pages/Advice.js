@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import "./advice.css";
 import { advContext } from "../Context";
+import { Link } from "react-router-dom";
 function Advice() {
   const { advices, setAdvices } = useContext(advContext);
   const [amount, setAmount] = useState(0);
@@ -32,6 +33,7 @@ function Advice() {
       alert("Amount has to be between 5 and 20");
     }
   }
+  console.log("adv", advices.length, "amo", typeof 7);
   return (
     <div>
       <h1>Advice Book</h1>
@@ -48,10 +50,13 @@ function Advice() {
             rows="3"
             value={amount}
             onChange={(e) => {
-              setAmount(e.target.value);
+              setAmount(parseInt(e.target.value));
             }}
           ></input>
-          <button onClick={() => RunAdvices(amount)} class="btn btn-primary">
+          <button
+            onClick={() => RunAdvices(amount)}
+            className="btn btn-primary"
+          >
             Get Advices
           </button>
         </div>
@@ -67,6 +72,11 @@ function Advice() {
               <li className="list-group-item">Empty</li>
             )}
           </ul>
+          {advices.length === amount && advices.length !== 0 ? (
+            <Link to="translate">
+              <button className="btn btn-success">Translate</button>
+            </Link>
+          ) : null}
         </div>
       </div>
     </div>

@@ -49,12 +49,12 @@ Your browser should open up to a running app.
 
 ## Application
 
- Decide the number of advices
- Click Get Advices button 
- When finished click Translate button to route Translate page
- Click Translate button
- Wait for the result
- Be patient :)
+ # Decide the number of advices
+ # Click Get Advices button 
+ # When finished click Translate button to route Translate page
+ # Click Translate button
+ # Wait for the result
+ # Be patient :)
  
  
 
